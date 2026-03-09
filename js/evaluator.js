@@ -1,4 +1,18 @@
-import { applyFunction , applyOperator , precedence , factorial } from "./mathUtils.js";
+/**
+ * Evaluates a mathematical expression string using two stacks :-
+ * (valueStack and operatorStack) 
+ * 
+ * Supports:
+ * - Basic operators: + - * / % ^
+ * - Functions: sin, cos, tan, etc.
+ * - Constants: π, e
+ * - Factorial (!)
+ * - Parentheses
+ * - Implicit multiplication like 2(3+4) or 3sin(30)
+ * - Validation For input.
+ */
+
+import { applyFunction, applyOperator, precedence, factorial } from "./mathUtils.js";
 import { FUNCTIONS } from "./ui.js";
 
 export function evaluate(expression) {
@@ -12,8 +26,10 @@ export function evaluate(expression) {
 
         let char = expression[i];
         currentNumber = "";
+        // Handle unary minus before parentheses or functions
+        // Example: -(3+4)  or  -sin(30)
 
-        if (char == "-" && (i == 0 || "+-*/(".includes(expression[i - 1])) && ((expression[i + 1] === "(")|| FUNCTIONS.some(fn => expression.startsWith(fn,i+1)))) {
+        if (char == "-" && (i == 0 || "+-*/(".includes(expression[i - 1])) && ((expression[i + 1] === "(") || FUNCTIONS.some(fn => expression.startsWith(fn, i + 1)))) {
 
             valueStack.push(-1);
             operatorStack.push("*");
@@ -21,6 +37,8 @@ export function evaluate(expression) {
             continue;
         }
 
+
+        // Parse numbers (including decimals and negative numbers)
         if (!isNaN(char) || char === "." || ((char === "-") && (i == 0 || "+-*/(".includes(expression[i - 1])))) {
 
             if (char === '-' && expression[i + 1] != "(") {
@@ -28,7 +46,7 @@ export function evaluate(expression) {
                 console.log(currentNumber);
                 i++;
             }
-
+            // Process until Number or Dot found
             while (!isNaN(expression[i]) || expression[i] === ".") {
                 currentNumber += expression[i];
                 i++;
@@ -39,9 +57,11 @@ export function evaluate(expression) {
             continue;
         }
 
-        const funName = FUNCTIONS.find(fn => expression.startsWith(fn,i))
+        // Detect functions like sin, cos, tan, sqrt etc.
+        const funName = FUNCTIONS.find(fn => expression.startsWith(fn, i))
         if (funName) {
 
+            // Handle implicit multiplication like 2sin(30) 
             if (valueStack.length >= 1 && (!isNaN(expression[i - 1]) || expression[i - 1] == ")")) {
                 operatorStack.push("*");
             }
@@ -59,7 +79,7 @@ export function evaluate(expression) {
             if (valueStack.length >= 1 && (!isNaN(expression[i - 1]) || expression[i - 1] == ")")) {
                 operatorStack.push("*");
             }
-                valueStack.push(Math.PI);
+            valueStack.push(Math.PI);
             i++;
             continue;
         }
@@ -95,7 +115,7 @@ export function evaluate(expression) {
             continue;
         }
 
-
+        // Process stack until matching "(" is found
         if (char === ")") {
             while (operatorStack.length && operatorStack.at(-1) !== "(") {
                 processStack(valueStack, operatorStack);
@@ -112,6 +132,7 @@ export function evaluate(expression) {
             continue;
         }
         if ("+-*/%^".includes(char)) {
+            // Check precedence of last character in Operator Stack , if higher then proceed to Stack else push to operator Stack
             while (
                 operatorStack.length &&
                 ((precedence(operatorStack.at(-1)) > precedence(char)) ||
@@ -144,6 +165,14 @@ function processStack(valueStack, operatorStack) {
     valueStack.push(result);
 }
 
+/**
+ * Validates the input expression before evaluation.
+ * Checks for:
+ * - invalid starting/ending operators
+ * - invalid operator sequences
+ * - multiple decimals
+ * - unbalanced parentheses
+ */
 export function isValid(expression) {
     if (/^[+*/%!]/.test(expression)) return "Cannot start with operator";
 

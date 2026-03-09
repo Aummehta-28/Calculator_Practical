@@ -1,4 +1,10 @@
+/**
+ * Saves History , Display History , Clear History.
+ * Error Handling if error occurs in performing operations.
+ */
 const historyList = document.querySelector(".list");
+
+
 export function saveHistory(expression, result) {
 
     try {

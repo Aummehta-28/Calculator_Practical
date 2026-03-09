@@ -1,3 +1,18 @@
+/**
+ * ui.js
+ *
+ * Responsible for handling user interactions in the calculator.
+ * It listens for button clicks, interprets button values,
+ * updates the display, and triggers calculations when needed.
+ *
+ * Main responsibilities:
+ * - Process calculator button clicks
+ * - Insert functions like sin(), cos(), etc.
+ * - Handle AC, DEL, and reciprocal operations
+ * - Trigger expression evaluation
+ * - Save and render calculation history
+ */
+
 import { evaluate, isValid } from "./evaluator.js";
 import { saveHistory,renderHistory } from "./calcHistory.js";
 

@@ -1,3 +1,18 @@
+/**
+ * mathUtils.js
+ *
+ * This file contains all mathematical utilities used by the calculator.
+ * It provides helper functions for:
+ * - Performing arithmetic operations (+, -, *, /, %, ^)
+ * - Applying mathematical functions (sin, cos, tan, log, ln, sqrt, abs)
+ * - Managing angle mode (DEG or RAD) for trigonometric calculations
+ * - Computing factorial values
+ * - Defining operator precedence used by the expression evaluator
+ *
+ * These utilities are used by the evaluator module to correctly
+ * parse and compute mathematical expressions entered in the calculator.
+ */
+
 let angleMode = "DEG"
 
 export function getAngleMode() {

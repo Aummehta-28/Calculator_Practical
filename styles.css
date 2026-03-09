@@ -1,0 +1,170 @@
+body{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+    
+}
+.container{
+    display:flex;
+    height:600px;
+}
+.calculator{
+    background-color: rgb(238, 238, 238);
+    height:100%;
+    padding:15px;
+    box-sizing: border-box;
+             
+    max-width: 400px;    
+    min-width: 280px;
+    border: 1px solid black;
+}
+.error {
+    color: red;
+}
+.history{
+    background-color: rgb(238,238,238);
+    height:100%;
+    margin-left:30px;
+    min-width:320px;
+    padding:10px;
+    box-sizing:border-box;
+ 
+    display:flex;
+    flex-direction:column;
+    border: 1px solid black;
+}
+ 
+.history-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:10px;
+}
+ 
+.title{
+    font-size:24px;
+    font-weight:600;
+    text-align: center;
+}
+ 
+ 
+.clear-history{
+    font-size:24px;
+    cursor:pointer;
+}
+ 
+ 
+ 
+.list{
+    overflow-y:auto;
+    border-radius:8px;
+    padding:10px;
+}
+ 
+ 
+.list-item{
+    padding:15px;
+    border-bottom:2px solid #eee;
+    background-color: rgb(129, 126, 126);
+    color:white;
+    font-size:22px;
+    cursor:pointer;
+}
+ 
+/* #display{
+    margin-bottom:20px;
+    font-size: 30px;
+    width:100%;
+    height:15%;
+    text-align:right;
+    line-height: 90%;
+} */
+#display{
+    margin-bottom:20px;
+    font-size: 30px;
+    width:97%;
+    height:80px;
+    text-align:right;
+    display:flex;
+    align-items:flex-end;  
+    justify-content:flex-end;
+    padding: 5px;
+    background:white;
+    border: 1px solid black;
+}
+.buttons{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    gap:10px;
+    height:450px;
+   
+}
+ 
+button{
+    font-size: 25px;
+    border:none;
+    border-radius: 10px;
+    cursor:pointer;
+    background-color: rgb(135, 132, 132);
+    color:white;
+}
+ 
+.operator{
+    background-color:#ff9500;
+    color:white;
+}
+ 
+.equals{
+    background-color: rgb(81, 183, 81);
+}
+.number{
+    background-color: white;
+    color:black;
+}
+ 
+ 
+button:hover{
+    transform: scale(1.05);
+   
+    background-color: rgb(160,160,160);
+}
+ 
+ 
+.number:hover{
+    background-color: #f2f2f2;
+}
+ 
+.operator:hover{
+    background-color: #ff8c00;
+}
+ 
+.equals:hover{
+    background-color: rgb(60,120,60);
+}
+ 
+ 
+ 
+ 
+ 
+ 
+@media (max-width:730px){
+ 
+    .container{
+        flex-direction: column;
+        align-items: center;
+        height:auto;   /* FIX */
+    }
+ 
+    .calculator{
+        width:95%;
+        margin-bottom:20px;
+    }
+ 
+    .history{
+        width:95%;
+        margin-left:0;
+        max-height:200px;
+    }
+ 
+}

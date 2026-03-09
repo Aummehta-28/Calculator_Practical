@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+ 
+<body>
+    <div class="container">
+        <div class="calculator">
+            <div id="display"></div>
+ 
+            <div class="buttons">
+                <!-- Row 1 -->
+                <button>AC</button>
+                <button>DEL</button>
+                <button>(</button>
+                <button>)</button>
+                <button data-value="%">mod</button>
+ 
+                <!-- Row 2 -->
+                <button>sin</button>
+                <button>cos</button>
+                <button>tan</button>
+                <button>log</button>
+                <button>ln</button>
+ 
+                <!-- Row 3 -->
+                <button>π</button>
+                <button>e</button>
+                <button>1/x</button>
+                <button class="operator">/</button>
+                <button data-value="sqrt(">√</button>
+ 
+                <!-- Row 4 -->
+                <button class="number">7</button>
+                <button class="number">8</button>
+                <button class="number">9</button>
+ 
+                <button class="operator" >*</button>
+                <button id="angle-mode">DEG</button>
+ 
+                <!-- Row 5 -->
+                <button class="number">4</button>
+                <button class="number">5</button>
+                <button class="number">6</button>
+ 
+                <button class="operator">-</button>
+                <button data-value="^">xʸ</button>
+ 
+                <!-- Row 6 -->
+                <button class="number">1</button>
+                <button class="number">2</button>
+                <button class="number">3</button>
+ 
+                <button class="operator">+</button>
+                <button class="equals">=</button>
+ 
+                <!-- Row 7 -->
+                <button data-value="abs(">abs</button>
+                <button class="number">0</button>
+ 
+                <button data-value="10^">10<sup>x</sup></button>
+                <button>!</button>
+                <button>.</button>
+            </div>
+        </div>
+ 
+        <div class="history">
+ 
+            <div class="history-header">
+                <div class="title">History</div>
+                <div class="clear-history">Clear</div>
+            </div>
+ 
+            <div class="list"></div>
+ 
+        </div>
+    </div>
+    <script type="module" src="./js/main.js"></script>
+</body>
+ 
+</html>

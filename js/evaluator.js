@@ -1,5 +1,6 @@
 import { applyFunction , applyOperator , precedence , factorial } from "./mathUtils.js";
 import { FUNCTIONS } from "./ui.js";
+
 export function evaluate(expression) {
     const valueStack = [];
     const operatorStack = [];
@@ -12,7 +13,7 @@ export function evaluate(expression) {
         let char = expression[i];
         currentNumber = "";
 
-        if (char == "-" && (i == 0 || "+-*/(".includes(expression[i - 1])) && ((expression[i + 1] === "(")|| FUNCTIONS.some(fn => expression.slice(i + 1, i + 1 + fn.length) === fn))) {
+        if (char == "-" && (i == 0 || "+-*/(".includes(expression[i - 1])) && ((expression[i + 1] === "(")|| FUNCTIONS.some(fn => expression.startsWith(fn,i+1)))) {
 
             valueStack.push(-1);
             operatorStack.push("*");
@@ -38,7 +39,7 @@ export function evaluate(expression) {
             continue;
         }
 
-        const funName = FUNCTIONS.find(fn => expression.slice(i, i + fn.length) === fn)
+        const funName = FUNCTIONS.find(fn => expression.startsWith(fn,i))
         if (funName) {
 
             if (valueStack.length >= 1 && (!isNaN(expression[i - 1]) || expression[i - 1] == ")")) {

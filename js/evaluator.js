@@ -29,7 +29,7 @@ export function evaluate(expression) {
         // Handle unary minus before parentheses or functions
         // Example: -(3+4)  or  -sin(30)
 
-        if (char == "-" && (i == 0 || "+-*/(".includes(expression[i - 1])) && ((expression[i + 1] === "(") || FUNCTIONS.some(fn => expression.startsWith(fn, i + 1)))) {
+        if (char == "-" && (i == 0 || "+-*/(^".includes(expression[i - 1])) && ((expression[i + 1] === "(") || FUNCTIONS.some(fn => expression.startsWith(fn, i + 1)))) {
 
             valueStack.push(-1);
             operatorStack.push("*");
@@ -39,7 +39,7 @@ export function evaluate(expression) {
 
 
         // Parse numbers (including decimals and negative numbers)
-        if (!isNaN(char) || char === "." || ((char === "-") && (i == 0 || "+-*/(".includes(expression[i - 1])))) {
+        if (!isNaN(char) || char === "." || ((char === "-") && (i == 0 || "+-*/(^".includes(expression[i - 1])))) {
 
             if (char === '-' && expression[i + 1] != "(") {
                 currentNumber += char;

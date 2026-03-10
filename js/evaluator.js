@@ -39,7 +39,11 @@ export function evaluate(expression) {
 
 
         // Parse numbers (including decimals and negative numbers)
-        if (!isNaN(char) || char === "." || ((char === "-") && (i == 0 || "+-*/(^".includes(expression[i - 1])))) {
+        if (!isNaN(char) || char === "." || ((char === "-") && (i == 0 || "+-*/(^)".includes(expression[i - 1])))) {
+
+            if (expression[i - 1] === ")") {
+                operatorStack.push("*");
+            }
 
             if (char === '-' && expression[i + 1] != "(") {
                 currentNumber += char;
